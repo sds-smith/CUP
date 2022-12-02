@@ -1,0 +1,12 @@
+
+.CheckInCardContainer {
+    border-radius: 10px;
+    background-color: bisque;
+    padding: 10px;
+    width: fit-content;
+    margin: 20px;
+}
+
+.CheckInImage {
+    width: 225px;
+}
