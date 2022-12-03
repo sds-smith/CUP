@@ -1,17 +1,18 @@
 import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
 
-import CheckInInput from "./components/check-in-input/check-in-input.component";
-import Feed from "./components/feed/feed.component";
+import Navigation from "./routes/navigation/navigation.component";
+import Home from "./routes/home/home.component";
 
 const App = () => {
-    const [feedContents, setFeedContents] = useState([])
+    const [authenticatedUser, setAuthenticatedUser] = useState(false)
 
     return (
-        <div>
-            <h1>CUP - cyber-sipping for Coffee Lovers</h1>
-            <CheckInInput setFeedContents={setFeedContents}/>
-            <Feed feedContents={feedContents} setFeedContents={setFeedContents}/>
-        </div>
+        <Routes>
+            <Route path='/' element={<Navigation setAuthenticatedUser={setAuthenticatedUser} authenticatedUser={authenticatedUser} />}>
+                <Route index element={<Home authenticatedUser={authenticatedUser} />} />
+            </Route>
+        </Routes>
     )
 }
 

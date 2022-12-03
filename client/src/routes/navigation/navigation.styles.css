@@ -1,0 +1,11 @@
+
+.Header {
+    background-color: antiquewhite;
+    display: flex;
+    justify-content:  space-between;
+}
+
+.SignInButton {
+    height: 30px;
+    margin: 15px;
+}
