@@ -5,7 +5,7 @@ import Navigation from "./routes/navigation/navigation.component";
 import Home from "./routes/home/home.component";
 
 const App = () => {
-    const [authenticatedUser, setAuthenticatedUser] = useState(false)
+    const [authenticatedUser, setAuthenticatedUser] = useState(null)
 
     return (
         <Routes>
