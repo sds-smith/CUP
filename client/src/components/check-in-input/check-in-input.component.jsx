@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const CheckInInput = ({setFeedContents}) => {
+const CheckInInput = ({setFeedContents, authenticatedUser}) => {
     const [activeCheckIn, setActiveCheckIn] = useState(false);
     const [friend, setFriend] = useState('')
     const [coffeeRoaster, setCoffeeRoaster] = useState('')
@@ -15,9 +15,6 @@ const CheckInInput = ({setFeedContents}) => {
         const {name, value} = target
 
         switch (name) {
-            case 'name':
-                setFriend(value)
-                break
             case 'roaster':
                 setCoffeeRoaster(value)
                 break
@@ -35,6 +32,7 @@ const CheckInInput = ({setFeedContents}) => {
     const onSubmit = async (e) => {
         e.preventDefault()
         const timeStamp = Date.now()
+        const friend = authenticatedUser.displayName
         const checkInData = {
             friend,
             coffeeRoaster,
@@ -58,7 +56,6 @@ const CheckInInput = ({setFeedContents}) => {
         }
 
         setActiveCheckIn(false)
-        setFriend('')
         setCoffeeName('')
         setCoffeeRoaster('')
         setExtractionMethod('')
@@ -68,7 +65,6 @@ const CheckInInput = ({setFeedContents}) => {
 
     const checkInForm = (
         <form onSubmit={onSubmit}>
-            <input type='text' name='name' onChange={onChange} value={friend} placeholder='Your Name'/>
             <input type='text' name='roaster' onChange={onChange} value={coffeeRoaster} placeholder='Roaster'/>
             <input type='text' name='coffee' onChange={onChange} value={coffeeName} placeholder='Coffee Name'/>
             <input type='text' name='method' onChange={onChange} value={extractionMethod} placeholder='Extraction Method'/>

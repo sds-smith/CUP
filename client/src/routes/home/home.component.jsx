@@ -12,7 +12,7 @@ const Home = ({authenticatedUser}) => {
 
     const postLogin = (
         <div>
-            <CheckInInput setFeedContents={setFeedContents}/>
+            <CheckInInput setFeedContents={setFeedContents} authenticatedUser={authenticatedUser} />
             <Feed feedContents={feedContents} setFeedContents={setFeedContents}/>
         </div>
     )
