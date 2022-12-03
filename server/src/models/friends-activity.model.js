@@ -19,6 +19,14 @@ function getFriendsActivity() {
     return friendsActivity
 }
 
+function addNewCheckIn(checkIn) {
+     checkIn.imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7K8_UPpuUYYs9Las_m_vhQIQIcbmJf8TED5mrwd0JV1OZlBKeMgnhaMxF5anCcqKvRbk&usqp=CAU'
+     friendsActivity.unshift(checkIn)
+     return friendsActivity
+
+}
+
 module.exports = {
-    getFriendsActivity
+    getFriendsActivity,
+    addNewCheckIn
 }

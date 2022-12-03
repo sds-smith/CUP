@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import CheckInCard from "../check-in-card/check-in-card.component";
 
-const Feed = () => {
-    const [feedContents, setFeedContents] = useState([])
+const Feed = ({feedContents, setFeedContents}) => {
 
     useEffect(() => {
         const getFriendActivity = async () => {
