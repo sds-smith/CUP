@@ -34,11 +34,13 @@ const CheckInInput = ({setFeedContents}) => {
 
     const onSubmit = async (e) => {
         e.preventDefault()
+        const timeStamp = Date.now()
         const checkInData = {
             friend,
             coffeeRoaster,
             coffeeName,
-            extractionMethod
+            extractionMethod,
+            timeStamp
         }
         try {
             const response = await fetch('http://localhost:8000/check-in-my-cup', {
