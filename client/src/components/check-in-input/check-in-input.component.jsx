@@ -2,7 +2,6 @@ import { useState } from "react";
 
 const CheckInInput = ({setFeedContents, authenticatedUser}) => {
     const [activeCheckIn, setActiveCheckIn] = useState(false);
-    const [friend, setFriend] = useState('')
     const [coffeeRoaster, setCoffeeRoaster] = useState('')
     const [coffeeName, setCoffeeName] = useState('')
     const [extractionMethod, setExtractionMethod] = useState('')
