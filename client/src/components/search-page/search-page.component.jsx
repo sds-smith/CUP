@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import CoffeeEntry from "../coffee-entry/coffee-entry.component";
+
 const SearchPage = () => {
     const [coffeeData, setCoffeeData] = useState([])
 
@@ -16,7 +18,7 @@ const SearchPage = () => {
         <div>
             {
                 coffeeData.map(coffeeEntry => (
-                    <div>{coffeeEntry.coffeeRoaster} {coffeeEntry.coffeeName}</div>
+                    <CoffeeEntry coffeeEntry={coffeeEntry} />
                 ))
             }
         </div>

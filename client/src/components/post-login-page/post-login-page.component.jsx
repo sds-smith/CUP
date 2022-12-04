@@ -12,9 +12,11 @@ const PostLoginPage = ({authenticatedUser}) => {
         setActiveSearch(!activeSearch)
     }
 
+    const buttonText = activeSearch ? 'Return to your Feed' : 'Check in your Cup'
+
     return (
         <div>
-            <button onClick={onClick}>Check in your Cup</button>
+            <button onClick={onClick}>{buttonText}</button>
             {
                 activeSearch ? (
                     <SearchPage />
