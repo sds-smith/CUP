@@ -1,14 +1,15 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import CheckInCard from '../../cards/check-in-card/check-in-card.component'
 import { FeedContext } from "../../../contexts/feed.context";
+
+import { httpGetFriendActivity } from "../../../utils/http/http";
 
 const Feed = () => {
     const {feedContents, setFeedContents} = useContext(FeedContext)
 
     useEffect(() => {
         const getFriendActivity = async () => {
-            const response = await fetch('http://localhost:8000/friends-activity')
-            const friendsActivityResponse = await response.json();
+            const friendsActivityResponse = await httpGetFriendActivity()
             setFeedContents(friendsActivityResponse)
         }
         getFriendActivity();

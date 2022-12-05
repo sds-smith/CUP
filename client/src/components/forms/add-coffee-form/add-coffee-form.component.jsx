@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { httpAddNewCoffee } from "../../../utils/http/http";
+
 const AddCoffeeForm = () => {
     const [activeAdding, setActiveAdding] = useState(false)
     const [coffeeName, setCoffeeName] = useState('')
@@ -55,14 +57,7 @@ const AddCoffeeForm = () => {
         }
 
         toggleForm()
-        const response = await fetch('http://localhost:8000/coffee-data', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(coffeeToSubmit)
-        })
-        const addResponse = await response.json()
+        await httpAddNewCoffee(coffeeToSubmit)
 
         setCoffeeName('')
         setCoffeeRoaster('')

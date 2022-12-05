@@ -7,6 +7,8 @@ import {UserContext} from '../../../contexts/user.context';
 import {CheckInContext} from '../../../contexts/check-in.context';
 import {FeedContext} from '../../../contexts/feed.context'
 
+import { httpCheckInMyCup } from "../../../utils/http/http";
+
 const CheckInForm = () => {
     const [extractionMethod, setExtractionMethod] = useState('')
 
@@ -45,14 +47,7 @@ const CheckInForm = () => {
             timeStamp
         }
         try {
-            const response = await fetch('http://localhost:8000/check-in-my-cup', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(checkInData)
-            })
-            const newFeed = await response.json();
+            const newFeed = await httpCheckInMyCup(checkInData);
             setFeedContents(newFeed)
         } catch(err) {
             console.log(err)
