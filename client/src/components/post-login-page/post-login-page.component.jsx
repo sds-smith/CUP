@@ -1,15 +1,15 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { Outlet, useNavigate, useParams } from 'react-router-dom'
 
 import { UserContext } from "../../contexts/user.context";
+import { CheckInContext } from "../../contexts/check-in.context";
 
 const PostLoginPage = () => {
-    const [activeSearch, setActiveSearch] = useState(false)
 
     const navigate = useNavigate()
-    const params = useParams()
-    const {userId} = params
-    const {userExists} = useContext(UserContext)
+    const {userId} = useParams()
+    const {userExists} = useContext(UserContext);
+    const {activeSearch, setActiveSearch} = useContext(CheckInContext)
 
     const onClick = () => {
         if (!activeSearch) {
@@ -26,10 +26,8 @@ const PostLoginPage = () => {
     useEffect(() => {
         if (!userExists) {
             navigate('/')
-        } else if (Object.keys(params).length === 1) {
-            setActiveSearch(false)
-        }
-    }, [userExists, params])
+        } 
+    }, [userExists])
 
     return (
         <div>

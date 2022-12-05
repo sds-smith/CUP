@@ -11,7 +11,7 @@ const CheckInForm = () => {
     const [extractionMethod, setExtractionMethod] = useState('')
 
     const {authenticatedUser} = useContext(UserContext);
-    const {coffeeToCheckIn} = useContext(CheckInContext);
+    const {coffeeToCheckIn, setActiveSearch} = useContext(CheckInContext);
     const {setFeedContents} = useContext(FeedContext);
 
     const navigate = useNavigate();
@@ -59,12 +59,17 @@ const CheckInForm = () => {
             return err
         }
         setExtractionMethod('');
+        setActiveSearch(false)
         navigate(`/${userId}`)
+    }
+
+    const returnToSearch = () => {
+        navigate(`/${userId}/search`)
     }
 
     return (
         <div>
-            <CoffeeCard coffeeEntry={coffeeToCheckIn} />
+            <CoffeeCard checkInForm coffeeEntry={coffeeToCheckIn} closeAction={returnToSearch} />
             <form onSubmit={onSubmit}>
                 <input type='text' name='method' onChange={onChange} value={extractionMethod} placeholder='Extraction Method'/>
                 <button type='submit'>SAVE</button>

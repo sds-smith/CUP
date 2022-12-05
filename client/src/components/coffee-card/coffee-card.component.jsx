@@ -5,7 +5,7 @@ import { CheckInContext } from '../../contexts/check-in.context';
 
 import './coffee-card.styles.css';
 
-const CoffeeCard = ({coffeeEntry, setExpanded}) => {
+const CoffeeCard = ({coffeeEntry, closeAction, checkInForm}) => {
     const {setCoffeeToCheckIn} = useContext(CheckInContext)
 
     const navigate = useNavigate();
@@ -23,7 +23,7 @@ const CoffeeCard = ({coffeeEntry, setExpanded}) => {
     } = coffeeEntry
 
     const closeCard = () => {
-        setExpanded(false)
+        closeAction()
     }
 
     const checkIn = () => {
@@ -42,7 +42,13 @@ const CoffeeCard = ({coffeeEntry, setExpanded}) => {
             <p>{process}</p>
             <p>{roastLevel}</p>
             <p>{description}</p>
-            <button onClick={checkIn} >Check In {coffeeName}</button>
+            {
+                checkInForm ? (
+                    <div></div>
+                ) : (
+                    <button onClick={checkIn} >Check In {coffeeName}</button>
+                )
+            }
         </div>
     )
 }

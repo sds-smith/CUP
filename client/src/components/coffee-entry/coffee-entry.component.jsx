@@ -9,11 +9,15 @@ const CoffeeEntry = ({coffeeEntry}) => {
         setExpanded(true)
     }
 
+    const closeAction = () => {
+        setExpanded(false)
+    }
+
     return (
         <div>
             {
                 expanded ? (
-                    <CoffeeCard coffeeEntry={coffeeEntry} setExpanded={setExpanded} />
+                    <CoffeeCard coffeeEntry={coffeeEntry} closeAction={closeAction} />
                 ) : (
                     <div onClick={expandCard}>{coffeeEntry.coffeeRoaster} {coffeeEntry.coffeeName}</div>
                 )
