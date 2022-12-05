@@ -1,7 +1,16 @@
+import { useContext } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { CheckInContext } from '../../contexts/check-in.context';
 
 import './coffee-card.styles.css';
 
 const CoffeeCard = ({coffeeEntry, setExpanded}) => {
+    const {setCoffeeToCheckIn} = useContext(CheckInContext)
+
+    const navigate = useNavigate();
+    const {userId} = useParams()
+
     const {
         coffeeName,
         coffeeRoaster,
@@ -17,6 +26,12 @@ const CoffeeCard = ({coffeeEntry, setExpanded}) => {
         setExpanded(false)
     }
 
+    const checkIn = () => {
+        setCoffeeToCheckIn(coffeeEntry)
+        const coffeeParam = coffeeName.split(' ').join('-').toLowerCase();
+        navigate(`/${userId}/check-in/${coffeeParam}`)
+    }
+
     return (
         <div className='CoffeeCardContainer'>
             <div onClick={closeCard}>X</div>
@@ -27,6 +42,7 @@ const CoffeeCard = ({coffeeEntry, setExpanded}) => {
             <p>{process}</p>
             <p>{roastLevel}</p>
             <p>{description}</p>
+            <button onClick={checkIn} >Check In {coffeeName}</button>
         </div>
     )
 }

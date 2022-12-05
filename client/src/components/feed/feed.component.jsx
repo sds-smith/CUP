@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import CheckInCard from "../check-in-card/check-in-card.component";
+import { FeedContext } from "../../contexts/feed.context";
 
-const Feed = ({feedContents, setFeedContents}) => {
+const Feed = () => {
+    const {feedContents, setFeedContents} = useContext(FeedContext)
 
     useEffect(() => {
         const getFriendActivity = async () => {

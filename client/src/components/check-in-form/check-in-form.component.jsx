@@ -1,15 +1,21 @@
 import { useState, useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import CoffeeCard from "../coffee-card/coffee-card.component";
 
 import {UserContext} from '../../contexts/user.context';
-import {CheckInContext} from '../../contexts/check-in.context'
+import {CheckInContext} from '../../contexts/check-in.context';
+import {FeedContext} from '../../contexts/feed.context'
 
-const CheckInForm = ({setFeedContents}) => {
+const CheckInForm = () => {
     const [extractionMethod, setExtractionMethod] = useState('')
 
     const {authenticatedUser} = useContext(UserContext);
-    const {coffeeToCheckIn} = useContext(CheckInContext)
+    const {coffeeToCheckIn} = useContext(CheckInContext);
+    const {setFeedContents} = useContext(FeedContext);
+
+    const navigate = useNavigate();
+    const {userId} = useParams();
 
     const {
         coffeeName,
@@ -52,19 +58,9 @@ const CheckInForm = ({setFeedContents}) => {
             console.log(err)
             return err
         }
-        setExtractionMethod('')
+        setExtractionMethod('');
+        navigate(`/${userId}`)
     }
-
-    // const checkInButton = <button onClick={onClick}>Check in your Cup</button>
-
-    // const checkInForm = (
-    //     <form onSubmit={onSubmit}>
-    //         <input type='text' name='roaster' onChange={onChange} value={coffeeRoaster} placeholder='Roaster'/>
-    //         <input type='text' name='coffee' onChange={onChange} value={coffeeName} placeholder='Coffee Name'/>
-    //         <input type='text' name='method' onChange={onChange} value={extractionMethod} placeholder='Extraction Method'/>
-    //         <button type='submit'>SAVE</button>
-    //     </form>
-    // )
 
     return (
         <div>

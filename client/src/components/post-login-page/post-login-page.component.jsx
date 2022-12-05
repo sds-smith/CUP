@@ -1,28 +1,40 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import { Outlet, useNavigate, useParams } from 'react-router-dom'
 
-import SearchPage from "../search-page/search-page.component";
-import Feed from "../feed/feed.component";
+import { UserContext } from "../../contexts/user.context";
 
 const PostLoginPage = () => {
-    const [feedContents, setFeedContents] = useState([])
     const [activeSearch, setActiveSearch] = useState(false)
 
+    const navigate = useNavigate()
+    const params = useParams()
+    const {userId} = params
+    const {userExists} = useContext(UserContext)
+
     const onClick = () => {
-        setActiveSearch(!activeSearch)
+        if (!activeSearch) {
+            setActiveSearch(true)
+            navigate(`search`)
+        } else {
+            setActiveSearch(false)
+            navigate(`/${userId}`)
+        }
     }
 
-    const buttonText = activeSearch ? 'Return to your Feed' : 'Check in your Cup'
+    const buttonText = activeSearch ? 'Return to your Feed' : 'Find your Cup'
+
+    useEffect(() => {
+        if (!userExists) {
+            navigate('/')
+        } else if (Object.keys(params).length === 1) {
+            setActiveSearch(false)
+        }
+    }, [userExists, params])
 
     return (
         <div>
             <button onClick={onClick}>{buttonText}</button>
-            {
-                activeSearch ? (
-                    <SearchPage />
-                ) : (
-                    <Feed feedContents={feedContents} setFeedContents={setFeedContents}/>
-                )
-            }
+            <Outlet />
         </div>
     )
 }

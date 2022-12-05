@@ -12,7 +12,6 @@ const Home = () => {
     useEffect(() => {
         if (userExists) {
             const userParam = authenticatedUser.displayName.split(' ').join('-').toLowerCase()
-            console.log(userParam)
             navigate(`/${userParam}`)
         }
     }, [userExists])
