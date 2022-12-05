@@ -2,13 +2,13 @@ import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Navigation from "./routes/navigation/navigation.component";
-import AuthenticationPage from "./components/authentication-page/authentication-page.component";
+import AuthenticationPage from "./routes/authentication-page/authentication-page.component";
 import Home from "./routes/home/home.component";
-import PreLoginPage from "./components/pre-login-page/pre-login-page.component";
-import PostLoginPage from "./components/post-login-page/post-login-page.component";
-import SearchPage from "./components/search-page/search-page.component";
-import Feed from "./components/feed/feed.component";
-import CheckInForm from "./components/check-in-form/check-in-form.component";
+import PreLoginPage from "./components/pages/pre-login-page/pre-login-page.component";
+import PostLoginPage from "./components/pages/post-login-page/post-login-page.component";
+import SearchPage from "./components/pages/search-page/search-page.component";
+import Feed from "./components/pages/feed/feed.component";
+import CheckInForm from './components/forms/check-in-form/check-in-form.component';
 
 import {FeedProvider} from './contexts/feed.context'
 

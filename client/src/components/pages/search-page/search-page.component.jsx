@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-import CoffeeEntry from "../coffee-entry/coffee-entry.component";
-import AddCoffeeForm from "../add-coffee-form/add-coffee-form.component";
+import CoffeeEntry from "../../cards/coffee-entry/coffee-entry.component";
+import AddCoffeeForm from '../../forms/add-coffee-form/add-coffee-form.component'
 
 const SearchPage = () => {
     const [coffeeData, setCoffeeData] = useState([])

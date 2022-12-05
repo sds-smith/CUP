@@ -1,8 +1,8 @@
 import { useEffect, useContext } from "react";
 import { Outlet, useNavigate, useParams } from 'react-router-dom'
 
-import { UserContext } from "../../contexts/user.context";
-import { CheckInContext } from "../../contexts/check-in.context";
+import { UserContext } from "../../../contexts/user.context";
+import { CheckInContext } from "../../../contexts/check-in.context";
 
 const PostLoginPage = () => {
 

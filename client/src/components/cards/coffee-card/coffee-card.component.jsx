@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { CheckInContext } from '../../contexts/check-in.context';
+import { CheckInContext } from '../../../contexts/check-in.context';
 
 import './coffee-card.styles.css';
 

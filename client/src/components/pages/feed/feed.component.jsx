@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
-import CheckInCard from "../check-in-card/check-in-card.component";
-import { FeedContext } from "../../contexts/feed.context";
+import CheckInCard from '../../cards/check-in-card/check-in-card.component'
+import { FeedContext } from "../../../contexts/feed.context";
 
 const Feed = () => {
     const {feedContents, setFeedContents} = useContext(FeedContext)

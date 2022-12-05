@@ -1,11 +1,11 @@
 import { useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import CoffeeCard from "../coffee-card/coffee-card.component";
+import CoffeeCard from "../../cards/coffee-card/coffee-card.component";
 
-import {UserContext} from '../../contexts/user.context';
-import {CheckInContext} from '../../contexts/check-in.context';
-import {FeedContext} from '../../contexts/feed.context'
+import {UserContext} from '../../../contexts/user.context';
+import {CheckInContext} from '../../../contexts/check-in.context';
+import {FeedContext} from '../../../contexts/feed.context'
 
 const CheckInForm = () => {
     const [extractionMethod, setExtractionMethod] = useState('')
