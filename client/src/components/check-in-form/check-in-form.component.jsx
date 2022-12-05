@@ -72,7 +72,7 @@ const CheckInForm = () => {
             <CoffeeCard checkInForm coffeeEntry={coffeeToCheckIn} closeAction={returnToSearch} />
             <form onSubmit={onSubmit}>
                 <input type='text' name='method' onChange={onChange} value={extractionMethod} placeholder='Extraction Method'/>
-                <button type='submit'>SAVE</button>
+                <button type='submit'>CHECK IN</button>
             </form>
         </div>
     )

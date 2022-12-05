@@ -18,7 +18,7 @@ const SearchPage = () => {
         <div>
             {
                 coffeeData.map(coffeeEntry => (
-                    <CoffeeEntry coffeeEntry={coffeeEntry} />
+                    <CoffeeEntry key={coffeeEntry.id} coffeeEntry={coffeeEntry} />
                 ))
             }
         </div>

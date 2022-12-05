@@ -17,7 +17,7 @@ const Feed = () => {
     return (
         <div>
             <h2>Recent Friend Activity</h2>
-            {feedContents.map(checkIn => <CheckInCard checkIn={checkIn}/>)}
+            {feedContents.map(checkIn => <CheckInCard key={checkIn.timeStamp} checkIn={checkIn}/>)}
         </div>
     )
 }
