@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import CoffeeEntry from "../coffee-entry/coffee-entry.component";
+import AddCoffeeForm from "../add-coffee-form/add-coffee-form.component";
 
 const SearchPage = () => {
     const [coffeeData, setCoffeeData] = useState([])
@@ -21,6 +22,7 @@ const SearchPage = () => {
                     <CoffeeEntry key={coffeeEntry.id} coffeeEntry={coffeeEntry} />
                 ))
             }
+            <AddCoffeeForm />
         </div>
     )
 }
