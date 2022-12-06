@@ -7,7 +7,7 @@ import {UserContext} from '../../../contexts/user.context';
 import {CheckInContext} from '../../../contexts/check-in.context';
 import {FeedContext} from '../../../contexts/feed.context'
 
-import { httpCheckInMyCup } from "../../../utils/http/http";
+import { httpCheckInMyCup } from "../../../utils/http/requests";
 
 const CheckInForm = () => {
     const [extractionMethod, setExtractionMethod] = useState('')

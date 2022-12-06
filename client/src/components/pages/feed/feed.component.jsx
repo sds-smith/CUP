@@ -2,7 +2,7 @@ import { useEffect, useContext } from "react";
 import CheckInCard from '../../cards/check-in-card/check-in-card.component'
 import { FeedContext } from "../../../contexts/feed.context";
 
-import { httpGetFriendActivity } from "../../../utils/http/http";
+import { httpGetFriendActivity } from "../../../utils/http/requests";
 
 const Feed = () => {
     const {feedContents, setFeedContents} = useContext(FeedContext)

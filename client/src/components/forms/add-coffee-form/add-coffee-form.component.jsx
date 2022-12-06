@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { httpAddNewCoffee } from "../../../utils/http/http";
+import { httpAddNewCoffee } from "../../../utils/http/requests";
 
 const AddCoffeeForm = () => {
     const [activeAdding, setActiveAdding] = useState(false)
