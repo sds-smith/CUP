@@ -1,4 +1,3 @@
-This project represents my first full-stack web app.
 
 The front-end will be built using React 18; back-end to be built using Node/ express.
 
