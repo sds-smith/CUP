@@ -6,7 +6,6 @@ const coffeeSchema = new mongoose.Schema({
     coffeeRoaster: String,
     singleOrigin: Boolean,
     origin: String,
-    cultivar: String,
     process: String,
     roastLevel: String,
     description: String
