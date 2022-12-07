@@ -1,6 +1,16 @@
 
 const API_URL = 'https://localhost:8000/v1'
 
+async function httpSignInWithGooglePassport() {
+    const response = await fetch(`${API_URL}/auth/google`);
+    return await response.json();
+}
+
+async function httpSignOutUser() {
+    const response = await fetch(`${API_URL}/auth/logout`)
+    return await response.json();
+}
+
 async function httpGetCoffeeData() {
     const response = await fetch(`${API_URL}/coffee-data`)
     const coffeeDataResponse = await response.json()
@@ -43,6 +53,8 @@ async function httpAddNewCoffee(coffeeToSubmit) {
 }
 
 export {
+    httpSignInWithGooglePassport,
+    httpSignOutUser,
     httpGetCoffeeData,
     httpGetFriendActivity,
     httpCheckInMyCup,

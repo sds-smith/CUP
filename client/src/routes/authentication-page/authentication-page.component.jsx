@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { UserContext } from "../../contexts/user.context";
-import {signInWithGooglePopup, signOutUser} from '../../utils/firebase/firebase.utils'
+import {httpSignInWithGooglePassport, httpSignOutUser} from '../../utils/http/requests'
 
 
 const AuthenticationPage = () => {
@@ -12,13 +12,14 @@ const AuthenticationPage = () => {
 
     const signIn = async () => {
         if (!userExists) {
-            const {user} = await signInWithGooglePopup()
+            const user = await httpSignInWithGooglePassport()
             setAuthenticatedUser({
                 displayName: user.displayName,
                 email: user.email
             })
         } else {
-            await signOutUser()
+            const msg = await httpSignOutUser()
+            console.log(msg)
             setAuthenticatedUser(null)
         }
         navigate('/')
@@ -29,6 +30,7 @@ const AuthenticationPage = () => {
     return (
         <div>                
             <button className='SignInButton' onClick={signIn}>{buttonText}</button>
+            <a href='https://localhost:8000/v1/auth/google'>Log In with Google</a>
         </div>
     )
 }
