@@ -10,7 +10,6 @@ function httpPostCheckIn(req, res) {
             error: "Missing required check-in data"
         })
     }
-
     return res.status(201).json(addNewCheckIn(checkIn))
 }
 

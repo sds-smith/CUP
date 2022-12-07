@@ -1,5 +1,5 @@
 
-const API_URL = 'http://localhost:8000/v1'
+const API_URL = 'https://localhost:8000/v1'
 
 async function httpGetCoffeeData() {
     const response = await fetch(`${API_URL}/coffee-data`)
