@@ -9,8 +9,10 @@ const app = require('./app');
 const PORT = process.env.PORT || 8000;
 
 const server = https.createServer({
-    key: fs.readFileSync('key.pem'),
-    cert: fs.readFileSync('cert.pem')
+    // key: fs.readFileSync('key.pem'),
+    // cert: fs.readFileSync('cert.pem')
+    key: process.env.KEY,
+    cert: process.env.CERT
 }, app);
 
 async function startServer() {
