@@ -6,7 +6,15 @@ const api = require('./routes/api')
 
 const app = express();
 
-app.use(helmet());
+// app.use(helmet({
+//     contentSecurityPolicy: {
+//         directives: {
+//             "script-src": ["'self'", "https://apis.google.com"],
+//             "connect-src": ["https://identitytoolkit.googleapis.com/"],
+//             "frame-src": ["https://cup---cybersipping-for-coffee.firebaseapp.com/"]
+//         }
+//     }
+// }));
 app.use(cors({
     origin: 'http://localhost:3000'
 }))
