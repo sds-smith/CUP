@@ -28,12 +28,12 @@ passport.use(new Strategy(AUTH_OPTIONS, verifyCallback));
 passport.serializeUser((user, done) => {
     done(null, {
         id: user.id,
-        displayName: user.displayName
+        displayName: user.displayName,
     })
 })
 
-passport.deserializeUser((obj, done) => {
-    done(null, obj)
+passport.deserializeUser((user, done) => {
+    done(null, user)
 })
 
 const authRouter = express.Router();
@@ -45,8 +45,17 @@ authRouter.use(cookieSession({
 }))
 
 authRouter.use(passport.initialize());
-authRouter.use(passport.session())
+authRouter.use(passport.session());
 
+function checkLoggedIn(req, res, next) {
+    const isLoggedIn = req.isAuthenticated() && req.user;
+    if (!isLoggedIn) {
+        return res.status(401).json({
+            error: 'You must log in'
+        })
+    }
+    next();
+};
 
 authRouter.get('/google', 
     passport.authenticate('google', {
@@ -55,11 +64,17 @@ authRouter.get('/google',
 
 authRouter.get('/google/callback', 
     passport.authenticate('google', {
-        failureRedirect: '/failure',
-        successRedirect: '/',
+        // failureRedirect: '/failure',
+        // successRedirect: `/success`,
     }), 
     (req, res) => {
-        console.log('Google callback')
+        console.log('Google callback', req.user)
+        const isLoggedIn = req.isAuthenticated() && req.user;
+        if (isLoggedIn) {
+            return res.redirect(`/`)
+        } else {
+            return res.redirect('/sign-in/oops')
+        };
     });
 
 authRouter.get('/logout', (req, res) => {
@@ -67,6 +82,15 @@ authRouter.get('/logout', (req, res) => {
         message: 'user is logged out'
     })
 });
+
+authRouter.get('/success', (req, res) => {
+    const isLoggedIn = req.isAuthenticated() && req.user;
+    if (isLoggedIn) {
+        return res.redirect(`/${user.displayName.split(' ').join('-').toLowerCase()}`)
+    } else {
+        return res.redirect('/')
+    }
+})
 
 authRouter.get('/failure', (req, res) => {
     return res.send('Failed to log in');

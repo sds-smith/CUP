@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 import { UserContext } from "../../contexts/user.context";
 import {httpSignInWithGooglePassport, httpSignOutUser} from '../../utils/http/requests'
@@ -12,11 +12,12 @@ const AuthenticationPage = () => {
 
     const signIn = async () => {
         if (!userExists) {
-            const user = await httpSignInWithGooglePassport()
-            setAuthenticatedUser({
-                displayName: user.displayName,
-                email: user.email
-            })
+            // const user = await httpSignInWithGooglePassport()
+            navigate('/v1/auth/google')
+            // setAuthenticatedUser({
+                // displayName: user.displayName,
+                // email: user.email
+            // })
         } else {
             const msg = await httpSignOutUser()
             console.log(msg)
@@ -29,8 +30,8 @@ const AuthenticationPage = () => {
 
     return (
         <div>                
-            <button className='SignInButton' onClick={signIn}>{buttonText}</button>
-            <a href='https://localhost:8000/v1/auth/google'>Log In with Google</a>
+
+            <Outlet />
         </div>
     )
 }

@@ -8,7 +8,7 @@ const PostLoginPage = () => {
 
     const navigate = useNavigate()
     const {userId} = useParams()
-    const {userExists} = useContext(UserContext);
+    // const {userExists} = useContext(UserContext);
     const {activeSearch, setActiveSearch} = useContext(CheckInContext)
 
     const onClick = () => {
@@ -23,11 +23,11 @@ const PostLoginPage = () => {
 
     const buttonText = activeSearch ? 'Return to your Feed' : 'Find your Cup'
 
-    useEffect(() => {
-        if (!userExists) {
-            navigate('/')
-        } 
-    }, [userExists])
+    // useEffect(() => {
+        // if (!userExists) {
+            // navigate('/')
+        // } 
+    // }, [userExists])
 
     return (
         <div>

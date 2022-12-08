@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom";
 
 import Navigation from "./routes/navigation/navigation.component";
 import AuthenticationPage from "./routes/authentication-page/authentication-page.component";
+import SignIn from "./components/forms/sign-in/sign-in.component";
+import Oops from "./components/pages/oops/oops.component";
 import Home from "./routes/home/home.component";
 import PreLoginPage from "./components/pages/pre-login-page/pre-login-page.component";
 import PostLoginPage from "./components/pages/post-login-page/post-login-page.component";
@@ -29,7 +31,10 @@ const App = () => {
                             <Route path='check-in/*' element={<CheckInForm/>}/>                   
                     </Route>
                 </Route>
-                <Route path='sign-in' element={<AuthenticationPage />} />
+                <Route path='sign-in' element={<AuthenticationPage />} >
+                    <Route index element={<SignIn/>} />
+                    <Route path='oops' element={<Oops/>} />
+                </Route>
             </Route>
         </Routes>
     )
