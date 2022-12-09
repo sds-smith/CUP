@@ -19,17 +19,17 @@ const AUTH_OPTIONS = {
 }
 
 function verifyCallback(accessToken, refreshToken, profile, done) {
-    console.log("Google profile", profile)
     done(null, profile)
 }
 
 passport.use(new Strategy(AUTH_OPTIONS, verifyCallback));
 
 passport.serializeUser((user, done) => {
-    done(null, {
+    const loggedUser = {
         id: user.id,
         displayName: user.displayName,
-    })
+    }
+    done(null, loggedUser)
 })
 
 passport.deserializeUser((user, done) => {
@@ -41,7 +41,8 @@ const authRouter = express.Router();
 authRouter.use(cookieSession({
     name: 'session',
     maxAge: 24 * 60 * 60 * 1000,
-    keys: [config.COOKIE_KEY_1, config.COOKIE_KEY_2]
+    keys: [config.COOKIE_KEY_1, config.COOKIE_KEY_2],
+    httpOnly: false
 }))
 
 authRouter.use(passport.initialize());
@@ -68,7 +69,7 @@ authRouter.get('/google/callback',
         // successRedirect: `/success`,
     }), 
     (req, res) => {
-        console.log('Google callback', req.user)
+        // console.log('Google callback', req.user)
         const isLoggedIn = req.isAuthenticated() && req.user;
         if (isLoggedIn) {
             return res.redirect(`/`)
@@ -76,6 +77,13 @@ authRouter.get('/google/callback',
             return res.redirect('/sign-in/oops')
         };
     });
+
+authRouter.get('/get-session', (req, res) => {
+    const user = req.user
+    if (user) {
+        return res.status(200).json(user)
+    }
+})
 
 authRouter.get('/logout', (req, res) => {
     return res.status(200).json({

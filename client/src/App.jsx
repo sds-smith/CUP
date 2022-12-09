@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Navigation from "./routes/navigation/navigation.component";
@@ -15,7 +14,7 @@ import CheckInForm from './components/forms/check-in-form/check-in-form.componen
 import {FeedProvider} from './contexts/feed.context'
 
 const App = () => {
-
+    
     return (
         <Routes>
             <Route path='/' element={<Navigation />}>
