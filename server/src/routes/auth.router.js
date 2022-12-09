@@ -48,28 +48,14 @@ authRouter.use(cookieSession({
 authRouter.use(passport.initialize());
 authRouter.use(passport.session());
 
-function checkLoggedIn(req, res, next) {
-    const isLoggedIn = req.isAuthenticated() && req.user;
-    if (!isLoggedIn) {
-        return res.status(401).json({
-            error: 'You must log in'
-        })
-    }
-    next();
-};
-
 authRouter.get('/google', 
     passport.authenticate('google', {
         scope: [ 'profile']
     }));
 
 authRouter.get('/google/callback', 
-    passport.authenticate('google', {
-        // failureRedirect: '/failure',
-        // successRedirect: `/success`,
-    }), 
+    passport.authenticate('google', {}), 
     (req, res) => {
-        // console.log('Google callback', req.user)
         const isLoggedIn = req.isAuthenticated() && req.user;
         if (isLoggedIn) {
             return res.redirect(`/`)
@@ -90,19 +76,6 @@ authRouter.get('/logout', (req, res) => {
     return res.clearCookie('session.sig').json({
         msg: 'Logged Out'
     })
-});
-
-authRouter.get('/success', (req, res) => {
-    const isLoggedIn = req.isAuthenticated() && req.user;
-    if (isLoggedIn) {
-        return res.redirect(`/${user.displayName.split(' ').join('-').toLowerCase()}`)
-    } else {
-        return res.redirect('/')
-    }
-})
-
-authRouter.get('/failure', (req, res) => {
-    return res.send('Failed to log in');
 });
 
 module.exports = authRouter;
