@@ -86,8 +86,9 @@ authRouter.get('/get-session', (req, res) => {
 })
 
 authRouter.get('/logout', (req, res) => {
-    return res.status(200).json({
-        message: 'user is logged out'
+    res.clearCookie('session')
+    return res.clearCookie('session.sig').json({
+        msg: 'Logged Out'
     })
 });
 

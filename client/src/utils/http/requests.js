@@ -1,14 +1,17 @@
+import { json } from "react-router-dom";
 
 const API_URL = 'https://localhost:8000/v1'
 
-async function httpSignInWithGooglePassport() {
-    const response = await fetch(`${API_URL}/auth/google`);
+async function httpGetSession() {
+    const response = await fetch(`${API_URL}/auth/get-session`)
     return await response.json();
 }
 
 async function httpSignOutUser() {
     const response = await fetch(`${API_URL}/auth/logout`)
-    return await response.json();
+    const jsonResponse = await response.json();
+    console.log(jsonResponse)
+    return jsonResponse;
 }
 
 async function httpGetCoffeeData() {
@@ -53,7 +56,7 @@ async function httpAddNewCoffee(coffeeToSubmit) {
 }
 
 export {
-    httpSignInWithGooglePassport,
+    httpGetSession,
     httpSignOutUser,
     httpGetCoffeeData,
     httpGetFriendActivity,

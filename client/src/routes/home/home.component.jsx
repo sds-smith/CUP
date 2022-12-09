@@ -3,6 +3,8 @@ import { Outlet, useNavigate } from "react-router-dom";
 
 import { UserContext } from "../../contexts/user.context";
 
+import { httpGetSession } from "../../utils/http/requests";
+
 const Home = () => {
     const { setAuthenticatedUser } = useContext(UserContext)
 
@@ -10,8 +12,7 @@ const Home = () => {
 
     useEffect(() => {
         const getSession = async () => {
-            const session = await fetch('https://localhost:8000/v1/auth/get-session')
-            const user = await session.json()
+            const user = await httpGetSession();
             if (user) {
                 setAuthenticatedUser(user)
                 const userParam = user.displayName.split(' ').join('-').toLowerCase()
