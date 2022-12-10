@@ -5,10 +5,10 @@ const CheckInCard = ({checkIn}) => {
     return (
         <div className='CheckInCardContainer'>
             <p>{timeStamp}</p>
-            <h3>{checkIn.friend} is sipping:</h3>
-            {checkIn.imageUrl ? <img src={checkIn.imageUrl} className='CheckInImage' alt='check-in image'/> : <div>No Image</div>}
-            <div>Roaster: {checkIn.coffeeRoaster}</div>
-            <div>Name: {checkIn.coffeeName}</div>
+            <h3>{checkIn.user} is sipping:</h3>
+            {/* {checkIn.imageUrl ? <img src={checkIn.imageUrl} className='CheckInImage' alt='check-in image'/> : <div>No Image</div>} */}
+            <div>Roaster: {checkIn.coffee}</div>
+            <div>Name: {checkIn.coffee}</div>
             <div>Method: {checkIn.extractionMethod}</div>
         </div>
     )

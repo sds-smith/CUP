@@ -1,4 +1,5 @@
 import { useState, createContext } from "react";
+import { httpGetFriendActivity } from "../utils/http/requests";
 
 export const FeedContext = createContext({
     feedContents: null,
@@ -8,9 +9,15 @@ export const FeedContext = createContext({
 export const FeedProvider = ({children}) => {
     const [feedContents, setFeedContents] = useState([])
 
+    const refreshFeed = async () => {
+        const friendsActivityResponse = await httpGetFriendActivity()
+        setFeedContents(friendsActivityResponse)
+    }
+
     const value = {
         feedContents,
-        setFeedContents
+        setFeedContents,
+        refreshFeed
     }
 
     return <FeedContext.Provider value={value} >{children}</FeedContext.Provider>

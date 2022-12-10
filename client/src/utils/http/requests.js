@@ -34,10 +34,10 @@ async function httpCheckInMyCup(checkInData) {
             },
             body: JSON.stringify(checkInData)
         })
-        const newFeed = await response.json();
-        return newFeed
+        // const newFeed = await response.json();
+        // return newFeed
     } catch(err) {
-        console.log(err)
+        console.log(err.data)
         return err
     }
 }

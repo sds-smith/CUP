@@ -1,3 +1,5 @@
+const checkIns = require('./check-in/check-in.mongo');
+
 const friendsActivity = [
     {
         friend: "Chip",
@@ -17,8 +19,9 @@ const friendsActivity = [
     },
 ]
 
-function getFriendsActivity() {
-    return friendsActivity
+async function getFriendsActivity() {
+    const feed = await checkIns.find({})
+    return feed; 
 }
 
 function addNewCheckIn(checkIn) {

@@ -30,6 +30,7 @@ async function addNewCheckIn(checkInToAdd) {
             message: 'check-in saved to database'
         }
     } catch(err) {
+        console.log(err)
         return err
     }
 }

@@ -1,7 +1,7 @@
 const {getFriendsActivity} = require('../models/friends-activity.model')
 
-function httpGetFriendsActivity(req, res) {
-    return res.status(200).json(getFriendsActivity())
+async function httpGetFriendsActivity(req, res) {
+    return res.status(200).json(await getFriendsActivity())
 }
 
 module.exports = {

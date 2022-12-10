@@ -46,7 +46,6 @@ const CheckInForm = () => {
         }
         try {
             const newFeed = await httpCheckInMyCup(checkInData);
-            setFeedContents(newFeed)
         } catch(err) {
             console.log(err)
             return err
