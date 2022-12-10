@@ -2,8 +2,8 @@ const express = require('express');
 
 const authRouter = require('./auth.router');
 const friendsActivityRouter = require('./friends-activity.router');
-const checkInRouter = require('./check-in.router');
-const coffeeDataRouter = require('./coffee.router')
+const checkInRouter = require('./check-in/check-in.router');
+const coffeeDataRouter = require('./coffee/coffee.router')
 
 const api = express.Router();
 

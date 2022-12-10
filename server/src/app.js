@@ -9,8 +9,7 @@ const app = express();
 app.use(helmet({
     contentSecurityPolicy: {
         directives: {
-            "connect-src": ["'self'", "https://accounts.google.com"]
-        }
+            "connect-src": ["'self'", "https://accounts.google.com"]        }
     }
 }));
 app.use(cors({

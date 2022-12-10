@@ -2,7 +2,7 @@ const fs = require('fs');
 const https = require('https');
 require('dotenv').config();
 const {mongoConnect} = require('./services/mongo');
-const {loadCoffeeData} = require('./models/coffee.model')
+const {loadCoffeeData} = require('./models/coffee/coffee.model')
 
 const app = require('./app');
 

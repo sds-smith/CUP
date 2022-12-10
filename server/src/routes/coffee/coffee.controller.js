@@ -1,4 +1,4 @@
-const {getCoffeeData, addNewCoffeeFromClient} = require('../models/coffee.model')
+const {getCoffeeData, addNewCoffeeFromClient} = require('../../models/coffee/coffee.model')
 
 async function httpGetCoffeeData(req, res) {
     return res.status(200).json(await getCoffeeData())

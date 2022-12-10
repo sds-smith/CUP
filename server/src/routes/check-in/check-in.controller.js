@@ -1,6 +1,6 @@
 const {
     addNewCheckIn
-} = require('../models/friends-activity.model')
+} = require('../../models/friends-activity.model')
 
 function httpPostCheckIn(req, res) {
     const checkIn = req.body

@@ -1,4 +1,3 @@
-import { json } from "react-router-dom";
 
 const API_URL = 'https://localhost:8000/v1'
 

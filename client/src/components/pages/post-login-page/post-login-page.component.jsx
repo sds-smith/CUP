@@ -8,7 +8,7 @@ const PostLoginPage = () => {
 
     const navigate = useNavigate()
     const {userId} = useParams()
-    const {userExists} = useContext(UserContext);
+    const {userExists, authenticatedUser} = useContext(UserContext);
     const {activeSearch, setActiveSearch} = useContext(CheckInContext)
 
     const onClick = () => {
