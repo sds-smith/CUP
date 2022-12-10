@@ -1,6 +1,6 @@
 const users = require('./user.mongo');
 
-async function findUser(filter) {
+async function findUserById(filter) {
     return await users.findOne(filter)
 }
 
@@ -9,21 +9,23 @@ async function getUsers() {
 }
 
 async function addNewUser(userToAdd) {
-    const userQuery = await users.find(userToAdd)
-    if (userQuery.length) {
+    const userQuery = await findUserById({id: userToAdd.id})
+    if (userQuery) {
         return {
             ok: false,
             status: 409,
-            message: 'Coffee already exists in database. Not added.'
+            message: 'User already exists in database. Not added.',
+            user: userQuery
         }
     }
     const newUser = new users(userToAdd);
     try {
-        await newUser.save();
+        const user = await newUser.save();
         return {
             ok: true,
             status: 201,
-            message: 'user saved to database'
+            message: 'user saved to database',
+            user
         }
     } catch (err) {
         return err
@@ -31,7 +33,7 @@ async function addNewUser(userToAdd) {
 }
 
 module.exports = {
-    findUser,
+    findUserById,
     getUsers,
     addNewUser
 }

@@ -2,6 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const { Strategy } = require('passport-google-oauth20');
 const cookieSession = require('cookie-session');
+const {addNewUser} = require('../models/user/user.model')
 
 require('dotenv').config();
 
@@ -24,12 +25,13 @@ function verifyCallback(accessToken, refreshToken, profile, done) {
 
 passport.use(new Strategy(AUTH_OPTIONS, verifyCallback));
 
-passport.serializeUser((user, done) => {
+passport.serializeUser( async (user, done) => {
     const loggedUser = {
-        id: user.id,
+        id: Number(user.id),
         displayName: user.displayName,
     }
-    done(null, loggedUser)
+    const persistedUser = await addNewUser(loggedUser)
+    done(null, persistedUser.user)
 })
 
 passport.deserializeUser((user, done) => {
