@@ -1,11 +1,11 @@
 const {
     addNewCheckIn
-} = require('../../models/friends-activity.model')
+} = require('../../models/check-in/check-in.model')
 
 function httpPostCheckIn(req, res) {
     const checkIn = req.body
 
-    if (!checkIn.friend || !checkIn.coffeeRoaster || !checkIn.coffeeName || !checkIn.extractionMethod) {
+    if (!checkIn.user || !checkIn.coffee || !checkIn.timeStamp || !checkIn.extractionMethod) {
         return res.status(400).json({
             error: "Missing required check-in data"
         })

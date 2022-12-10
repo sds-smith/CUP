@@ -38,11 +38,9 @@ const CheckInForm = () => {
     const onSubmit = async (e) => {
         e.preventDefault()
         const timeStamp = Date.now()
-        const friend = authenticatedUser.displayName
         const checkInData = {
-            friend,
-            coffeeRoaster,
-            coffeeName,
+            user: authenticatedUser.id,
+            coffee: coffeeToCheckIn.id,
             extractionMethod,
             timeStamp
         }
