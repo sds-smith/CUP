@@ -1,4 +1,6 @@
 const checkIns = require('./check-in/check-in.mongo');
+const users = require('./user/user.mongo');
+const coffees = require('./coffee/coffee.mongo');
 
 const friendsActivity = [
     {
@@ -20,7 +22,33 @@ const friendsActivity = [
 ]
 
 async function getFriendsActivity() {
-    const feed = await checkIns.find({})
+    const feed = await checkIns
+        .find({})
+        .populate('user')
+        .populate('coffee')
+    console.log({feed})
+    // const feedToReturn = feed.map(async (checkIn) => {
+        // const user = await users.findOne({id: checkIn.user})
+        // console.log({user})
+        // const {displayName} = user
+        // const coffee = await coffees.findOne({id: checkIn.coffee})
+        // console.log({coffee})
+        // const {coffeeName, coffeeRoaster} = coffee
+        // const extractionMethod =  checkIn.extractionMethod
+        // console.log({extractionMethod})
+        // const timeStamp = checkIn.timeStamp
+        // console.log({timeStamp})
+        // const returnValue = {
+            // displayName,
+            // coffeeName,
+            // coffeeRoaster,
+            // extractionMethod,
+            // timeStamp
+        // }
+        // console.log({returnValue})
+        // return returnValue
+    // })
+    // console.log({feedToReturn})
     return feed; 
 }
 

@@ -39,8 +39,8 @@ const CheckInForm = () => {
         e.preventDefault()
         const timeStamp = Date.now()
         const checkInData = {
-            user: authenticatedUser.id,
-            coffee: coffeeToCheckIn.id,
+            user: authenticatedUser._id,
+            coffee: coffeeToCheckIn._id,
             extractionMethod,
             timeStamp
         }
